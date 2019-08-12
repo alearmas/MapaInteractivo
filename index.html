@@ -39,8 +39,12 @@
                 <select id="comoIr">
                     <option value='Auto'> Auto </option>
                     <option value='Caminando'> Caminando </option>
-                    <option value='Bus/Subterraneo/Tren'> Transporte Público </option>
+                    <option value='Transporte'> Transporte Público </option>
                 </select>
+            </div>
+            <div class="directions">
+                <div id='directions-panel-summary'> </div>
+                <div id='directions-panel'> </div>
             </div>
             <div class="hide-xs">
                 <div class='agregarPts'>
@@ -70,11 +74,9 @@
                 </div>
             </div>
             <input type="submit" id="calcularMuchos" value="Calcular Ruta" class="btn btn-outline">
+            <button class="btn btn-outline" onclick="mostrarOcultarBike()">Ocultar/Mostrar Ciclovías</button>
+            <button class="btn btn-outline" onclick="mostrarOcultarSubte()">Ocultar/Mostrar Subtes</button>
             <button class="btn btn-outline" onclick="mostrarOcultarPano()">Ocultar/Mostrar StreetView</button>
-        </div>
-        <div class="directions">
-            <div id='directions-panel-summary'> </div>
-            <div id='directions-panel'> </div>
         </div>
     </div>
     </div>

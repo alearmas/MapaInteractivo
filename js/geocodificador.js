@@ -1,8 +1,16 @@
 geocodificadorModulo = (function () {
   var geocodificador // Geocodificador que dada una dirección devuelve una coordenada
+  var mapa
   
     // Permite obtener las coordenadas y las usa con la función llamada por parámtero
   function usaDireccion (direccion, funcionALlamar) {
+    geocodificador.geocode({address : direccion}, function (result,status){
+      if (status == google.maps.GeocoderStatus.OK) {
+        var coordenadas = result[0].geometry.location;
+        funcionALlamar(direccion, coordenadas); 
+      }
+    });
+
         /* Completar la función usaDireccion(dirección,funcionALlamar)
      para que se obtengan las coordenadas a partir de la dirección pasada por parámetro
      y que llame a la función pasada por parámetro con los siguientes parámetros

@@ -2,14 +2,26 @@ var mapa // Mapa que vamos a modificar
 
 // Inicializa el mapa con un valor de zoom y una locación en el medio
 function inicializarMapa () {
-  /* Modificá la variable mapa con el constructor Map().
-  Tendrás que asignarle un valor de zoom y
-  un centro igual a la variable posicionCentral. */
+  var myLatLng = {lat: -34.617134, lng: -58.445232};
+
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.617134, lng:-58.445232},
+    center: myLatLng,
     zoom: 13
   });
 
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+
+  var bikeLayer = new google.maps.BicyclingLayer();
+  bikeLayer.setMap(map);
+  
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: "¡Aquí estás!"
+  });
+  marker.setAnimation(google.maps.Animation.DROP)
+  
   geocodificadorModulo.inicializar()
   marcadorModulo.inicializar()
   direccionesModulo.inicializar()

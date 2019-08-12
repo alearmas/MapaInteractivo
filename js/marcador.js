@@ -6,11 +6,15 @@ marcadorModulo = (function () {
   var infoVentana // La ventana con información
 
     // Crea un marcador y lo muestra en el mapa
-  function mostrarMiMarcador (ubicacion) {
-        /* Completar la función mostrarMiMarcador() para crear un marcador
-        en la posición pasada por parámetro y mostrarlo en el mapa.
-        Este marcador debe tener un título, una animación.
-        El marcador que vas a crear debe asignarse a la variable miMarcador */
+  function mostrarMiMarcador () {
+    var myLatLng = {lat: -34.617134, lng: -58.445232};
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: "¡Aquí está!"
+    });
+    marker.setAnimation(google.maps.Animation.DROP)
   }
 
     // Agrega la dirección del marcador en la lista de Lugares Intermedios
@@ -216,7 +220,7 @@ marcadorModulo = (function () {
     }
   }
 
-    // Marco los lugares cerca de mi posición
+  // Marco los lugares cerca de mi posición
   function marcar () {
     borrarMarcadores(marcadores)
     console.log('lugar: ' + document.getElementById('tipoDeLugar').value)

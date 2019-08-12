@@ -45,7 +45,7 @@ direccionesModulo = (function () {
     that = this
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
     agregarDireccionEnLista(direccion, ubicacionTexto)
-    mapa.setCenter(ubicacion)
+    map.setCenter(ubicacion)
     streetViewModulo.fijarStreetView(ubicacion)
     marcadorModulo.mostrarMiMarcador(ubicacion)
   }
@@ -92,10 +92,40 @@ direccionesModulo = (function () {
     // Calcula la ruta entre los puntos Desde y Hasta con los puntosIntermedios
     // dependiendo de la formaDeIr que puede ser Caminando, Auto o Bus/Subterraneo/Tren
   function calcularYMostrarRutas () {
-
-        /* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
-         usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
-         y luego muestra la ruta. */
+    var origen = document.getElementById('desde').value;
+    var destino = document.getElementById("hasta").value;
+    var medio= "";
+    if( document.getElementById("comoIr").value == "Auto"){
+      medio = google.maps.TravelMode.DRIVING
+    }
+    if( document.getElementById("comoIr").value == "Caminando"){
+      medio = google.maps.TravelMode.WALKING
+    }
+    if( document.getElementById("comoIr").value == "Transporte"){
+      medio = google.maps.TravelMode.TRANSIT
+    }
+    var wpoints = [];
+    $("#puntosIntermedios option:selected").each(function(){  
+      var lugar= $(this).val();
+      wpoints.push({location:lugar, stopover:true})
+    })
+     
+    servicioDirecciones.route({
+      origin: origen,
+      destination: destino,
+      travelMode: medio,
+      waypoints: wpoints
+    }, function(results, status){
+      if (status == google.maps.DirectionsStatus.OK) {
+        mostradorDirecciones.setMap(mapa);
+        mostradorDirecciones.setDirections(results);
+        legs = results.routes[0].legs; 
+        wpoints = [];
+      }
+      else{
+        console.log(status)
+      }
+    })    
   }
 
   return {
