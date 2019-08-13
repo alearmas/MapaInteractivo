@@ -15,7 +15,7 @@ direccionesModulo = (function () {
     var listasLugares = document.getElementsByClassName('lugares')
     for (var j = 0; j < listasLugares.length; j++) {
       listasLugares[j].addEventListener('change', function () {
-        if (document.getElementById('desde').value != '' && document.getElementById('desde').value != '') {
+        if (document.getElementById('desde').value != '' && document.getElementById('hasta').value != '') {
           direccionesModulo.calcularYMostrarRutas()
         }
       })

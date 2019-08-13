@@ -6,16 +6,19 @@ marcadorModulo = (function () {
   var infoVentana // La ventana con información
 
     // Crea un marcador y lo muestra en el mapa
-  function mostrarMiMarcador () {
-    var myLatLng = {lat: -34.617134, lng: -58.445232};
+  function mostrarMiMarcador (ubicacion, ubicacionTexto) {
+   var posCentral = {lat: ubicacion.lat(), lng: ubicacion.lng()};
 
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: "¡Aquí está!"
-    });
-    marker.setAnimation(google.maps.Animation.DROP)
-  }
+   var marker = new google.maps.Marker({
+     position: posCentral,
+     map: map,
+     title: "¡Aquí Estás!"
+   });
+   marker.setAnimation(google.maps.Animation.BOUNCE)
+    setTimeout(function(){ 
+      marker.setAnimation(null); 
+    }, 1500);
+ }
 
     // Agrega la dirección del marcador en la lista de Lugares Intermedios
   function agregarDireccionMarcador (marcador) {
@@ -227,7 +230,7 @@ marcadorModulo = (function () {
     if (marcadorModulo.existeMiMarcador()) {
       var miPosicion = marcadorModulo.damePosicion()
     } else {
-      miPosicion = posicionCentral
+      miPosicion = posCentral
     }
     lugaresModulo.buscarCerca(miPosicion)
         // cambio el centro del mapa a miPosicion

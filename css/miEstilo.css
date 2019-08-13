@@ -53,6 +53,13 @@ output {
     background: transparent;
 }
 
+.btn-outline-info {
+    width: 91px;
+    border: solid 1px #4b858a;
+    color: #4b858a;
+    background: transparent;
+}
+
 .btn-outline:hover {
     border-color: #285e63;
 }

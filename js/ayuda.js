@@ -8,6 +8,16 @@ function mostrarOcultarPano () {
   }
 }
 
+function mostrarOcultarSubte () {
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+}
+
+function mostrarOcultarBike () {
+  var bikeLayer = new google.maps.BicyclingLayer();
+  bikeLayer.setMap(map);
+}
+
 // Mueve las opción para arriba para ordenar los puntos intermedios
 $(document).ready(function () {
   $('.up').click(function () {
