@@ -1,5 +1,6 @@
 // Muestra y oculta el panorama de Street View cuando se hace clic el boton con id 'pano'
-function mostrarOcultarPano () {
+function mostrarOcultarPano() {
+  
   var x = document.getElementById('pano')
   if (getComputedStyle(x, null).visibility === 'hidden') {
     x.style.visibility = 'visible'
@@ -8,14 +9,20 @@ function mostrarOcultarPano () {
   }
 }
 
-function mostrarOcultarSubte () {
-  var transitLayer = new google.maps.TransitLayer();
-  transitLayer.setMap(map);
+function mostrarOcultarSubte() {
+  if (transitLayer.getMap()) {
+    transitLayer.setMap(null);
+  } else {
+    transitLayer.setMap(mapa);
+  }
 }
 
-function mostrarOcultarBike () {
-  var bikeLayer = new google.maps.BicyclingLayer();
-  bikeLayer.setMap(map);
+function mostrarOcultarBike() {
+  if (bikeLayer.getMap()) {
+    bikeLayer.setMap(null);
+  } else {
+    bikeLayer.setMap(mapa);
+  }
 }
 
 // Mueve las opción para arriba para ordenar los puntos intermedios
@@ -39,7 +46,7 @@ $(document).ready(function () {
 })
 
 // muestra el valor indicado por el selector radioS
-function mostrarValor (n) {
+function mostrarValor(n) {
   document.querySelector('#radioS').value = n + ' mts'
 }
 

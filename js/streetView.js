@@ -9,10 +9,9 @@ streetViewModulo = (function () {
             heading: 34,
             pitch: 10
           },
-          visible:hidden
         });
-    map.StreetViewPanorama(panorama);
-    map.setStreetView(panorama);
+    // mapa.StreetViewPanorama(panorama);
+    mapa.setStreetView(panorama);
   }
   
     // Actualiza la ubicación del Panorama
